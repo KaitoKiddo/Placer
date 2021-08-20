@@ -35,10 +35,18 @@ class Net_list:
         dir = os.getcwd()
         nets_file = open(dir + '\\' + file_cfg.folder + '\\' + file_cfg.nets_filename)
 
-        for i in range(7): # 过滤文件头
+        for i in range(4): # 过滤文件头
             temp = nets_file.readline()
+        
+        temp = nets_file.readline()
+        _, _, num = temp.split()
+        num = num[:-1]
+        num = int(num)
+        temp = nets_file.readline()
+        temp = nets_file.readline()
 
-        while True:
+        for i in range(num):
+        # while True:
             line = nets_file.readline()
             line = line[:-1] # remove '\n'
             if len(line.split()) == 4:
@@ -57,9 +65,6 @@ class Net_list:
                 pass
 
             self.net_list[net.name] = net # add net into net_list, {net_name : net class}
-
-            if net_name == 'n990898':
-                break
 
             # break
 
