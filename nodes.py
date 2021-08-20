@@ -110,4 +110,4 @@ class Node_list:
 if __name__ == '__main__':
     # node1 = Node('o0', 5, 9, 1)
     nodelist = Node_list()
-    print(nodelist.overlap_list['p33443'].__dict__)
+    print(nodelist.overlap_list['p16391'].__dict__)
