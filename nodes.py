@@ -2,20 +2,15 @@ import os
 from file_cfg import File_cfg
 
 class Node:
-    
-    n = '' # name
-    w = 0 # width
-    h = 0 # height
-    t = 0 # movetype 0:movable 1:fixed 2:fixed but can overlap
-
-    x = 0 # X
-    y = 0 # Y
 
     def __init__(self, n, w, h, t) -> None:
-        self.n = n
-        self.w = w
-        self.h = h
-        self.t = t
+        self.n = n # name
+        self.w = w # width
+        self.h = h # height
+        self.t = t # movetype 0:movable 1:fixed 2:fixed but can overlap
+
+        self.x = 0 # X
+        self.y = 0 # Y
 
     # 节点的操作，修改坐标
     def set_x(self, x):
