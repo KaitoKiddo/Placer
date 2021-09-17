@@ -96,7 +96,7 @@ class Node_list:
             else: # error
                 pass
             
-            print(name)
+            # print(name)
             # break
 
         pl_file.close()
