@@ -3,10 +3,6 @@ from file_cfg import File_cfg
 
 class Pin:
 
-    node = ''
-    x_offset = 0
-    y_offset = 0
-
     def __init__(self, node_name, x, y) -> None:
         self.node = node_name
         self.x_offset = x
@@ -14,13 +10,10 @@ class Pin:
 
 class Net:
 
-    name = '' # net name
-    num = 0 # number of pins on this net
-    pin_list = []
-
     def __init__(self, name, num) -> None:
-        self.name = name
-        self.num = num
+        self.name = name # net name
+        self.num = num # number of pins on this net
+        self.pin_list = []
 
     def add_pin(self, pin):
         self.pin_list.append(pin)
@@ -28,9 +21,10 @@ class Net:
 
 class Net_list:
 
-    net_list = {}
-
     def __init__(self) -> None:
+        self.netname_list = []
+        self.net_list = {}
+
         file_cfg = File_cfg()
         dir = os.getcwd()
         nets_file = open(dir + '\\' + file_cfg.folder + '\\' + file_cfg.nets_filename)
@@ -40,7 +34,6 @@ class Net_list:
         
         temp = nets_file.readline()
         _, _, num = temp.split()
-        num = num[:-1]
         num = int(num)
         temp = nets_file.readline()
         temp = nets_file.readline()
@@ -64,6 +57,7 @@ class Net_list:
             else: # error
                 pass
 
+            self.netname_list.append(net.name) # add net name into netname_list, [net_name, net_name, ...]
             self.net_list[net.name] = net # add net into net_list, {net_name : net class}
 
             # break
@@ -72,5 +66,7 @@ class Net_list:
 
 if __name__ == '__main__':
     netlist = Net_list()
-    print(netlist.net_list['n0'].pin_list[8].__dict__)
+    print(netlist.net_list['n511684'].pin_list[0].__dict__)
+    print(len(netlist.netname_list))
+    print(len(netlist.net_list['n0'].pin_list))
 
