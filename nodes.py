@@ -22,11 +22,12 @@ class Node:
 
 class Node_list:
 
-    movable_list = {}
-    fixed_list = {}
-    overlap_list = {}
-
     def __init__(self) -> None:
+        self.name_list = []
+        self.movable_list = {}
+        self.fixed_list = {}
+        self.overlap_list = {}
+
         file_cfg = File_cfg()
         dir = os.getcwd()
 
@@ -44,6 +45,7 @@ class Node_list:
                 h = int(h)
                 t = 0
                 node = Node(n, w, h, t)
+                self.name_list.append(n)
                 self.movable_list[n] = node
             elif len(line.split()) == 4: # fixed node
                 n, w, h, t = line.split()
@@ -52,10 +54,12 @@ class Node_list:
                 if t == 'terminal': # can't overlap
                     t = 1
                     node = Node(n, w, h, t)
+                    self.name_list.append(n)
                     self.fixed_list[n] = node
                 elif t == 'terminal_NI': # overlap
                     t = 2
                     node = Node(n, w, h, t)
+                    self.name_list.append(n)
                     self.overlap_list[n] = node
                 else: # error
                     pass
@@ -103,6 +107,11 @@ class Node_list:
 
 
 if __name__ == '__main__':
+    import time
+    start = time.time()
     # node1 = Node('o0', 5, 9, 1)
     nodelist = Node_list()
     print(nodelist.overlap_list['p16391'].__dict__)
+    print(nodelist.name_list[:10])
+    end = time.time()
+    print(end - start) # running time, (s)
