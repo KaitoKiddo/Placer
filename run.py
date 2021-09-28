@@ -1,3 +1,4 @@
+from networkx.readwrite import graph6
 from env import Env
 
 env = Env()
