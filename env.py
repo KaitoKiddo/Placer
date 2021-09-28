@@ -1,3 +1,4 @@
+from networkx.algorithms.distance_measures import eccentricity
 from nets import Net_list
 from nodes import Node_list
 
@@ -65,8 +66,8 @@ if __name__ == '__main__':
     start = time.time()
 
     env = Env()
-    state = env.reset()
-    print(state)
+    # state = env.reset()
+    print(env.nets)
 
     end = time.time()
     print(end - start) # running time, (s)
