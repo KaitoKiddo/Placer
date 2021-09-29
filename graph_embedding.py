@@ -6,14 +6,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from itertools import combinations
 
-def graph_embedding():
+def graph_embedding(env):
 
     '''
         parameters:
             nodes: Node_list object from nodes.py
             nets: Net_list object from nets.py
     '''
-    env = Env()
+    
     G = nx.Graph()
     G.add_nodes_from(env.nodes)
     for net in env.nets:
