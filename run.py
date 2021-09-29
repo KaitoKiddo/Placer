@@ -1,10 +1,11 @@
+from graph_embedding import graph_embedding
 from networkx.readwrite import graph6
 from env import Env
 
 env = Env()
 
 s = env.reset()
-print(s)
+G = graph_embedding(env)
 r = 0
 for i in range(5):
     
