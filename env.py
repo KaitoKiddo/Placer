@@ -20,7 +20,7 @@ class Env():
 
         net_list = Net_list()
         nets_name = net_list.netname_list
-        for i in range(5): # choose 3 nets from net_list
+        for i in range(10): # choose 3 nets from net_list
             net = net_list.net_list[nets_name[i]]
             pin_list = net.pin_list
             nodes = []
@@ -55,11 +55,30 @@ class Env():
 
     def step(self, s, a):
 
+        '''
+            parameters:
+                s: state
+                a: action from agent, an array of numpy like [x, y]
+                n: node name, which is placing now
+        '''
+        # change state s
+        for i in len(s):
+            if 0 in s[i]: # [x,y]
+                s[i] = a
+                break
         s_ = s
-
+        # calculate reward
         r = 1
 
-        return s_, r
+        # set done
+        if np.any(s_ == 0):
+            done = False
+        else:
+            done = True
+        return s_, r, done
+
+    def render():
+        pass
 
 if __name__ == '__main__':
     import time
@@ -67,7 +86,7 @@ if __name__ == '__main__':
 
     env = Env()
     # state = env.reset()
-    print(env.nets)
+    print(env.reset())
 
     end = time.time()
-    print(end - start) # running time, (s)
+    print(end - start) # running time, (s) 
