@@ -27,7 +27,7 @@ class Net_list:
 
         file_cfg = File_cfg()
         dir = os.getcwd()
-        nets_file = open(dir + '\\' + file_cfg.folder + '\\' + file_cfg.nets_filename)
+        nets_file = open(dir + '/' + file_cfg.folder + '/' + file_cfg.nets_filename)
 
         for i in range(4): # 过滤文件头
             temp = nets_file.readline()
