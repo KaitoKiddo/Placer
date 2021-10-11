@@ -32,7 +32,7 @@ class Node_list:
         dir = os.getcwd()
 
         # process nodes file
-        nodes_file = open(dir + '\\' + file_cfg.folder + '\\' + file_cfg.nodes_filename)
+        nodes_file = open(dir + '/' + file_cfg.folder + '/' + file_cfg.nodes_filename)
         
         for i in range(7): # 把文件开头过滤掉
             temp = nodes_file.readline() 
@@ -69,7 +69,7 @@ class Node_list:
         nodes_file.close()
 
         # process pl file
-        pl_file = open(dir + '\\' + file_cfg.folder + '\\' + file_cfg.pl_filename)
+        pl_file = open(dir + '/' + file_cfg.folder + '/' + file_cfg.pl_filename)
 
         for i in range(4): # 过滤文件头
             temp = pl_file.readline()
