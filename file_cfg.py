@@ -26,7 +26,7 @@ class File_cfg:
 					break
 		# print(dir)
 
-		aux_file = open(dir + '\\' + self.folder + '\\' + self.folder + '.aux')
+		aux_file = open(dir + '/' + self.folder + '/' + self.folder + '.aux')
 		aux = aux_file.readline()
 		aux_file.close()
 		aux = aux.split()
