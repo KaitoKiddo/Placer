@@ -1,3 +1,4 @@
+from env import Env
 import networkx as nx
 from itertools import combinations
 
@@ -19,8 +20,8 @@ def graph_embedding(env):
 if __name__ == '__main__':
     import time
     start = time.time()
-
-    graph_embedding()
+    env = Env()
+    graph_embedding(env)
 
     end = time.time()
     print(end - start)
