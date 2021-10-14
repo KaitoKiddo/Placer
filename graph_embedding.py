@@ -2,7 +2,7 @@ from env import Env
 import networkx as nx
 from itertools import combinations
 
-def graph_embedding(env):
+def graph_embedding(env, s):
 
     '''
         parameters:
@@ -12,6 +12,13 @@ def graph_embedding(env):
     
     G = nx.Graph()
     G.add_nodes_from(env.nodes)
+
+    i = 0
+    for name in env.nodes:
+        G.nodes[name]['x'] = s[i][0]
+        G.nodes[name]['y'] = s[i][1]
+        i += 1
+
     for net in env.nets:
         G.add_edges_from(list(combinations(net, 2)))
 
