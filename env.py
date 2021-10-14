@@ -61,7 +61,7 @@ class Env():
                 n: node name, which is placing now
         '''
         # change state s
-        for i in len(s):
+        for i in range(len(s)):
             if 0 in s[i]: # [x,y]
                 s[i] = a
                 break
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     env = Env()
     # state = env.reset()
-    print(env.reset())
+    print(env.node_list.__dict__)
 
     end = time.time()
     print(end - start) # running time, (s) 
