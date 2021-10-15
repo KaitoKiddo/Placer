@@ -1,3 +1,4 @@
+from time import sleep
 from nets import Net_list
 from nodes import Node_list
 
@@ -16,7 +17,9 @@ class Env():
 
         self.nets = [] # the nets of pins
         self.nodes = [] # the list of all nodes' name, for adjacency matrix
-
+        self.x = [] # the x coordinate of all nets
+        self.y = [] # the y coordinate of all nets
+        self.node_list = Node_list()
         net_list = Net_list()
         nets_name = net_list.netname_list
         for i in range(10): # choose 3 nets from net_list
@@ -26,10 +29,25 @@ class Env():
             for pin in pin_list:
                 nodes.append(pin.node)
                 self.nodes.append(pin.node)
+            x = []
+            y = []
+            for node in nodes:
+                if node in self.node_list.movable_list.keys():
+                    node_obj = self.node_list.movable_list[node]
+                    x.append(node_obj.x)
+                    y.append(node_obj.y)
+                if node in self.node_list.fixed_list.keys():
+                    node_obj = self.node_list.fixed_list[node]
+                    x.append(node_obj.x)
+                    y.append(node_obj.y)
+                if node in self.node_list.overlap_list.keys():
+                    node_obj = self.node_list.overlap_list[node]
+                    x.append(node_obj.x)
+                    y.append(node_obj.y)
             self.nets.append(nodes)
+            self.x.append(x)
+            self.y.append(y)
         # print(self.nets)    
-
-        self.node_list = Node_list()
 
     def reset(self):
         movable_list = self.node_list.movable_list
@@ -60,14 +78,23 @@ class Env():
                 a: action from agent, an array of numpy like [x, y]
                 n: node name, which is placing now
         '''
-        # change state s
+
+        # update state s
         for i in range(len(s)):
             if 0 in s[i]: # [x,y]
                 s[i] = a
                 break
         s_ = s
+        
         # calculate reward
-        r = 1
+        r = 0
+        for i in range(len(self.x)):
+            x_max = max(self.x[i])
+            x_min = min(self.x[i])
+            y_max = max(self.y[i])
+            y_min = min(self.y[i])
+            HPWL = x_max - x_min + y_max - y_min
+            r += -HPWL
 
         # set done
         if np.any(s_ == 0):
@@ -85,7 +112,7 @@ if __name__ == '__main__':
 
     env = Env()
     # state = env.reset()
-    print(env.node_list.__dict__)
+    print(type(env.y))
 
     end = time.time()
     print(end - start) # running time, (s) 
