@@ -10,8 +10,7 @@ r = 0
 for i in range(10):
     
     a = 0
-    s_, reward, done = env.step(s, a)
+    s_, r, done = env.step(s, a)
     s = s_
-    r += reward
 
-print(r)
+    print(r)
