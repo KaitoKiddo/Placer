@@ -76,7 +76,6 @@ class Env():
             parameters:
                 s: state
                 a: action from agent, an array of numpy like [x, y]
-                n: node name, which is placing now
         '''
 
         # update state s
